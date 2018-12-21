@@ -38,3 +38,19 @@ http://www.techbrood.com/?q=%E6%98%9F%E7%A9%BA
 
 张鑫旭讲解attachEvent
 https://www.zhangxinxu.com/wordpress/tag/attachevent/
+
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "build",
+        "lib": [
+            "es6"
+        ]  
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
