@@ -39,6 +39,9 @@ http://www.techbrood.com/?q=%E6%98%9F%E7%A9%BA
 张鑫旭讲解attachEvent
 https://www.zhangxinxu.com/wordpress/tag/attachevent/
 
+typescript
+在constructor方法里面用public name:string的话，相当于在class里面声明了name属性，但是如果没有public的话，就没有声明name属性
+
 {
     "compilerOptions": {
         "target": "es5",
