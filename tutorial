@@ -63,3 +63,4 @@ typescript
 
 卸载已有的NPM
 npm uninstall vue-cli -g
+重新安装 npm install -g @vue-cli
