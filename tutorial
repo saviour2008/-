@@ -62,4 +62,4 @@ typescript
 }
 
 卸载已有的NPM
-npm uninstall
+npm uninstall vue-cli -g
