@@ -60,3 +60,6 @@ typescript
         "node_modules"
     ]
 }
+
+卸载已有的NPM
+npm uninstall
