@@ -64,9 +64,10 @@ typescript
 卸载已有的NPM依赖包
 npm uninstall vue-cli -g
 重新安装 npm install -g @vue-cli
-指定使用包的哪个版本 npm install @版本号
 
-更新依赖包npm update
+指定使用包的哪个版本 npm install 依赖包名称@版本号
+
+更新依赖包npm update 或者  指定更新某个版本npm update webpack@2.3.3  如果后面再加上--save，那么会写在package.json之中 比如npm update webpack@4.7.0 --save
 
 npm install --save-dev是添加到 package.json 文件 devDependencies （开发环境）键下，添加到devDependencies 键下的时候，是开发时依赖，在不开发的时候，就用不到这里面的依赖包了
 npm install --save是会把依赖包名称添加到 package.json 文件 dependencies （生产环境）键下，是运行时依赖，是指发布后还要依赖的模块，譬如像jQuery库或者Angular框架类似的，我们在开发完后后肯定还要依赖它们。
