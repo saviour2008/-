@@ -99,6 +99,6 @@ https://www.cnblogs.com/littlebirdlbw/p/5670633.html
 package.json初始化的时候，在文件夹路径，用npm init -y生成package.json
 npm install webpack webpack-cli -D (在开发环境所依赖得包)
 在webpack中，所有文件都是模块
-(AMD对应require.js，CMD对应的是sea.js，ES6Module对应的是[import，export]，commonjs对应的是node写法[通过require来加载模块；通过exports和modul.exports来暴露模块中的内容])
+(AMD对应require.js，CMD对应的是sea.js，ES6Module对应的是[import，export]，commonjs对应的是node写法[通过require来加载模块；通过exports和module.exports来暴露模块中的内容])
 
 
