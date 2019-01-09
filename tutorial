@@ -107,3 +107,7 @@ npm install webpack webpack-cli -D (在开发环境所依赖得包)
 (AMD对应require.js，CMD对应的是sea.js，ES6Module对应的是[import，export]，commonjs对应的是node写法[通过require来加载模块；通过exports和module.exports来暴露模块中的内容])
 
 npx是针对npm的扩展，就是指直接执行node_modules里面对应的bin下的webpack.cmd，比如npx webpack，如果发现没有安装webpack，那么会先安装webpack，再去执行node_modules里面对应的bin下的webpack.cmd
+
+webpack.config.js是基于node的语法，common.js的写法
+module.exports={}
+
