@@ -93,8 +93,12 @@ npm install --save是会把依赖包名称添加到 package.json 文件 dependen
 1.x 表示的更新范围为>=1.0.0&&< 2.0.0
 1.2.x 表示的更新范围为>=1.2.0&&< 1.3.0
 
+
+关于commonjs的一些知识点，用于nodejs
+https://www.cnblogs.com/littlebirdlbw/p/5670633.html
 package.json初始化的时候，在文件夹路径，用npm init -y生成package.json
 npm install webpack webpack-cli -D (在开发环境所依赖得包)
-
+在webpack中，所有文件都是模块
+(AMD对应require.js，CMD对应的是sea.js，ES6Module对应的是[import，export]，commonjs对应的是node写法[通过require来加载模块；通过exports和modul.exports来暴露模块中的内容])
 
 
