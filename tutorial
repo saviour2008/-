@@ -116,5 +116,5 @@ npx是针对npm的扩展，就是指直接执行node_modules里面对应的bin�
 webpack.config.js是基于node的语法，common.js的写法
 module.exports={}
 
-npm run start (npx webpack)
-npm run build (npx webpack-dev-server)
+npm run start (npx webpack-dev-server)
+npm run build (npx webpack)
