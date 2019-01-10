@@ -117,4 +117,4 @@ webpack.config.js是基于node的语法，common.js的写法
 module.exports={}
 
 npm run start (npx webpack-dev-server)
-npm run build (npx webpack)
+npm run build (npx webpack) 会生成build文件夹
