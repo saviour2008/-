@@ -123,6 +123,11 @@ webpack的插件包htmlWebpackPlugin,clean-webpack-plugin
   "start":'webpack-dev-server'
 }
 webpack.config.json中启动需要配置
+entry:['',''],//可以写一个数组，数组里面有多个需要打包的文件，这说明把多个js放在一个js中输出
+entry:{
+  index: './src/index.js',
+  a: './src/a.js'
+},  //多入口，多个js分别输出多个js
 output:{
   filename:'build.[hash:8].js',
   path: path.resolve('./build')
