@@ -116,11 +116,17 @@ npx是针对npm的扩展，就是指直接执行node_modules里面对应的bin�
 webpack.config.js是基于node的语法，common.js的写法
 module.exports={}
 
+webpack的插件包htmlWebpackPlugin,clean-webpack-plugin
+
 在package.json中得scripts中编写对应得快捷键
 {
   "start":'webpack-dev-server'
 }
 webpack.config.json中启动需要配置
+output:{
+  filename:'build.[hash:8].js',
+  path: path.resolve('./build')
+}
 devServer:{
     contentBase:'./build',
     port: 3000,  //端口号
@@ -130,6 +136,26 @@ devServer:{
 这样就npx webpack-dev-server就会把打包的文件放在浏览器内存中根目录build文件夹下面，但是不会在本地出现，但是本地build目录下面如果有文件，通过浏览器路径也事可以访问到的
 
 将html打包到build目录下，并自动引入生产打包出来的js文件
+
+用插件的话，1.需要先npm install 插件 -D;
+           2.需要先按照node方式引入let xxx = require('xxx')，引入后是一个类;
+           3.所以在plugins里面需要new 一下这个类，并在实例化这个类的时候，传入相应的参数。
+pulgins:[
+    new HtmlWebpackPlugin({
+        template: './src/index.html',
+        title: 'demo',
+        hash: true,
+        minify: {
+            removeAttributeQuotes：true, //压缩掉html中的引号
+            collapseWhitespace:true,
+            
+        }
+        ...多种参数
+    })
+    new CleanWebpackPlugin(['./build'])
+]
+webpack会记住这个html模板，会把打包生成的js，引入到这个html中。再把这个html生成在build目录中，同时也会把配置里面的各种变量生成后写在build文件的html中
+
 npm run start (npx webpack-dev-server)这时候生成的代码存在浏览器中，不会出现build文件夹，会生成端口号路径，这样会提升打包性能，
 npm run build (npx webpack) 会生成build文件夹，这时候在build文件夹中会生成打包文件，然后上线
 使用webpack-dev-server服务器启动时，打包生成的文件在内存中，而使用webpack命令打包生成的bundle.js默认是在dist目录下，页面引用的时候路径不同。
