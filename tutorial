@@ -103,7 +103,6 @@ npm install --save是会把依赖包名称添加到 package.json 文件 dependen
 1.x 表示的更新范围为>=1.0.0&&< 2.0.0
 1.2.x 表示的更新范围为>=1.2.0&&< 1.3.0
 
-
 关于commonjs的一些知识点，用于nodejs（注意node版本号）
 https://www.cnblogs.com/littlebirdlbw/p/5670633.html
 (AMD对应require.js，CMD对应的是sea.js，ES6Module对应的是[import，export]，commonjs对应的是node写法[通过require来加载模块；通过exports和module.exports来暴露模块中的内容])
