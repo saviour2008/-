@@ -116,5 +116,6 @@ npx是针对npm的扩展，就是指直接执行node_modules里面对应的bin�
 webpack.config.js是基于node的语法，common.js的写法
 module.exports={}
 
-npm run start (npx webpack-dev-server)这时候生成的代码存在浏览器中
+npm run start (npx webpack-dev-server)这时候生成的代码存在浏览器中，不会出现build文件夹
 npm run build (npx webpack) 会生成build文件夹，这时候在build文件夹中
+使用webpack-dev-server服务器启动时，打包生成的文件在内存中，而使用webpack命令打包生成的bundle.js默认是在dist目录下，页面引用的时候路径不同。
