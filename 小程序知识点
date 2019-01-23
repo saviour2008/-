@@ -1,0 +1,54 @@
+wx.login() 
+请求成功后获取res（里面包含临时登录凭证code，这个code只能使用一次）,然后到后台换取 openId, sessionKey, unionId
+
+而后台也是通过拿到临时登录凭证code后，通过GET https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code 发送请求，获取到openId,sessionKey,unionId返回前台，或者根据用户标识来生成自定义登录态，用来后续前台的使用
+
+
+调用wx.getUserInfo(Object object)之前，需要从Setting中看到是否获得了授权（授权的话res.authSetting['scope.userInfo']为true，如果没有授权的话，res.authSetting['scope.userInfo']为false），只有授权了才能调用wx.getUserInfo(Object object)
+
+而授权（res.authSetting）是从wx.getSetting中获取到的，部分接口需要获得用户授权同意后才能调用。
+说白了，wx.getSetting是获取用户关于这个小程序Setting的内容，如果setting中是用户授权用户信息同意的话，那么就会发起getUserInfo的请求。
+
+
+wx.openSetting(Object object)调起客户端小程序设置界面，返回用户的设置的操作结果。
+
+wx.authorize(Object object) 调用后会立刻弹窗询问用户是否同意授权小程序使用某项功能或获取用户的某些数据，但不会实际调用对应接口。如果用户之前已经同意授权，则不会出现弹窗，直接返回成功。
+
+如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。请开发者兼容用户拒绝授权的场景。
+
+this.setData({
+   [`serviceArray[${i}].itemStatus`]:true
+});
+字符串拼接
+
+onLoad里面的默认参数是关于路由相关信息，可以通过路由，把上个页面的参数传到下一个页面，比如点击列表中的哪一个item，携带的数据
+
+getUserInfo 接口：10 月 10 日起新提交的版本，用户在小程序、小游戏中需要点击组件后，才可以触发登录授权弹窗、授权自己的昵称头像等数据。
+
+openSetting 接口：10 月 10 日起新提交的版本，用户在小程序、小游戏中需要点击行为后，才可以跳转打开设置页，管理授权信息。
+
+
+初始化的时候首先执行的是App的生命周期函数，再执行page的函数
+App onLaunch函数
+App onShow函数
+
+当点击“后台”时，
+首先执行Page的onHide生命周期函数
+再执行App的onHide生命周期函数
+
+当点击“前台”时
+首先执行Page的onShow生命周期函数
+再执行App的onShow生命周期函数
+
+onLoad文档加载的时候执行
+onShow文档显示的时候会执行
+onReady文档渲染完毕的时候会执行
+onUnload文档左上角点击返回的时候，会触发，指页面销毁的时候执行
+onHide文档点击后台的时候，把页面隐藏的时候触发。
+onShow文档当点击前台的时候，即程序从后台被重新转回到前台的时候。
+
+wx:if和wx:for必须分开使用
+
+作用于整个页面的样式或修改顶层节点样式请使用page选择器。
+
+本地联调的时候，如果跟本地启动的服务联调，并在小程序中发送本地地址的请求，比如url：“http://localhost:4000/products”，那么需要把上面最右侧的“详情”点击，勾选上项目设置里面的“不校验合法域名，web-view（业务域名），TLS版本以及HTTPS证书”
