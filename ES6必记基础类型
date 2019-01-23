@@ -1,0 +1,128 @@
+1.字符串方法
+codePointAt
+fromCodePoint
+ES6可以处理大于0xFFFF这种字符，但是必须把大于0xFFFF的unicode编码用{}包起来
+`abc ${woshishui}`
+
+字符串对象的方法，比如let str="string"那么str就是字符串对象
+str.includes()
+str.startsWith()
+str.endsWith()
+
+str.repeat(2)
+
+str.padStart(2,"0")第一个参数表示补足两位，用0从最前面补
+str.padEnd(2,"0")第一个参数表示补足两位，用0从最后面补
+
+`abc ${woshishui}` 字符串模板
+
+console.log(String.raw`Hi\n${1+2}`)当用raw的话，那么会阻止\n转义，进而在\前面加上/
+如果不用raw的话，那么就会把字符串里面的特殊字符按照意思进行转义
+
+函数可以调用字符串模板，调用字符串模板的函数，在参数里面会有字符串模板的信息和里面变量的信息
+
+
+2.数字方法
+Number.isFinite是否在有效值范围内，如果在有效范围内，那么就是true，如果不在有效范围内，那么就是false。
+比如Number.isFinite(15),这时候就是true。比如Number.isFinite(NaN),这时候就是false。
+
+Number.isNaN(NaN);这时候是true,填写除了NaN之外的都是false
+
+Number.isInteger(25.0)判断是否是整数。这时候也是true。因为25.0也是整数。
+
+在-2的53次方和2的53次方是一个数的范围（不包括边界）。ES6做出来一个规范2的53次方的常量，这时候就叫Number.MAX_SAFE_INTEGER，还有个下限的数就叫Number.MIN_SAFE_INTEGER
+
+number.isSafeInteger(10)，用来检查这个数是否在安全范围内。
+
+Math.trunc(4.1)指的是只取整数部分，小数部分忽略
+
+Math.sign(-5)返回的是-1，Math.sign(5)返回的是1，Math.sign(0)返回的是0,通过这个计算方法来判断是正数还是负数，还是0,同时这个方法还会进行隐式类型转换。如果转换后是数字类型，那么按照数字进行处理，如果转换后不是数字，那么就返回个NaN
+
+Math.cbrt(8)结果是2，这是求立方根的方法
+
+3.数组方法
+let arr = Array.of(3,4,7,8,11);生成新的数组，里面的参数就是数组里面的每个元素，如果不传，就生成空数组
+
+有些方法返回的值，不是真正的数组，但有数组的一些特性，这时候需要我们把这个值转化成数组。也就是说把伪数组转化为数组，这时候就用Array.from()
+let p = document.querySelectorAll("p")这时，P并不是数组
+let pArr = Array.from(p)这时pArr才是数组
+这时就可以用数组的一些方法了比如forEach
+
+Array.from(array,fn)这个方法会把参数里面的array中进行map，比如
+Array.from([1,3,5],function(item){return item*2}) 输出的就是[2,6,10]
+
+数组对象新增了一个fill方法，把数组里面每一项都变成fill()里面的参数，比如
+["a",undefined,true].fill(7) 输出后数组就是["7","7","7"]
+注意fill()方法里面有3个参数，第一个参数是要改变后的值，第二个参数是从哪个序列号开始，第三个参数是到哪个序列号结束（不包括该元素）
+["a",undefined,true,"wo",11].fill(7,1,3)的意思就是说从序列号为1的那个元素开始更改，连续改变3个元素，所以输出的就是["a", 7, 7, "wo", 11]
+
+数组有keys()方法，比如["a",undefined,true].keys()
+数组有values()方法，比如["a",undefined,true].values()
+数组有entries()方法，比如["a",undefined,true].entries()
+
+数组有copyWithin()方法，比如["a",undefined,true,"wo",11].copyWithin(0,3,4)第一个参数指的是下标第0个元素需要被替换，第二个元素和第三个元素指的是下标范围，把第二个元素和第三个元素之间的元素取出来，用来替代第0个元素。所以输出的就是["wo",undefined,true,"wo",11]
+
+数组有find()方法，比如["a",undefined,true].find(fn)返回一个数组元素（第一个符合条件的）
+数组有findIndex()方法，比如["a",undefined,true].findIndex(fn)返回一个数组元素的下标（第一个符合条件的）
+
+数组有includes()方法,比如["a",undefined,true,NaN].includes(NaN)，返回true
+
+4.函数扩展
+...rest参数，当函数内有function(...arg){}后，...arg，会将传入的参数在函数体内变为数组。比如在函数体内的arg就是数组结构，就可以调用数组对象的相应的方法
+尾调用，指的就是函数的返回值也是一个函数调用。比如，
+function tail(x){
+	console.log('tail',x)
+}
+function fx(x){
+	return tail(x)
+}
+fx(123)
+尾调用对提升性能有很大好处，如果某个函数会依赖另外的函数，或者函数体内嵌套其他函数，建议最后用尾调用，尾调用至关重要，尤其是代码优化方面，详情请看https://www.cnblogs.com/freelandun/p/7290768.html
+
+递归比较耗费资源，改成尾递归，也优化了很多资源
+
+5.对象扩展
+对象里面每个属性和属性对应的值如果都是同一个命名，就不用都写，写一个就可以
+对象里面的function也可以简写,比如
+let o = 1;
+let obj = {
+  o,  //相当于 o:o;
+  getName(){
+    console.log("I am lee")
+  }	
+}
+
+属性表达式
+let a = "b"
+let obj = {
+  [a]:"c"
+}
+所以输出的就是
+obj : {b:"c"}
+
+对象也新增了几个api，比如
+Object.is([],[])因为对象类型都是引用类型，所以输出是false，Object.is()相当于===的校验
+Object.assign()是拷贝，Object.assign({a:'a'},{b:'b'}),是浅拷贝，只是引用地址的拷贝。只会拷贝自身的属性，不会拷贝继承的属性，也不会拷贝不可枚举的属性
+
+6.解构赋值
+(1){a,b}={a:1,b:2} 得出a=1,b=2
+
+(2)function f(){return [1,2,3,4,5]}
+[a,...b]=f() 得出a=1,b=[2,3,4,5]
+
+(3)let o = {p:32,q:true}
+let {p,q} = o
+console.log(p,q)输出32，true
+
+(4)let {a=10,b=5}={a:3};
+console.log(a,b);输出是(3,5),后面a的值把前面a的值覆盖上了
+
+(5)let metaData = {
+  title:"acn",
+  test:[{
+    name:"little",
+    age: 18
+  }]
+}
+let {title: TStitle, test:[{name: TSname}]} = metaData
+console.log(TStitle,TSname);
