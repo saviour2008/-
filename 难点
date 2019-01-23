@@ -1,0 +1,72 @@
+知识点
+justify-content指的是水平方向前后居中如何分布排列，align-content指的是某一行的排列
+align-items指的是垂直方向上下居中如何分布排列（整体）align-self指的是某单个item的排列（单体）
+
+在Flex布局中，flex子元素的设置float，clear以及vertical-align属性都是没有用的。
+
+margin-inline和margin-block的区别在于，一个表示inline元素排版方向，一个表示block元素排版方向。
+
+writing-mode属性可以改变block元素的排版方向
+direction:rtl
+
+
+CSS scroll-behavior属性和JS scrollIntoView()方法都可以。
+凡是需要滚动的地方都加一句scroll-behavior:smooth就好了！
+html, body { scroll-behavior:smooth; }
+
+
+JS scrollIntoView与平滑滚动
+target.scrollIntoView({
+    behavior: "smooth"
+});
+如果我们的网页已经通过CSS设置了scroll-behavior:smooth声明，则我们直接执行target.scrollIntoView()方法就会有平滑滚动，无需再额外设置behavior参数。
+document.forms[0].scrollIntoView();
+scrollTop 就是滚动条距离顶部的距离
+张鑫旭封装的滚动方法
+
+padding和margin的百分比参照的是宽度
+所以 width: 100%; height: 0; overflow: hidden; padding-bottom: 50%; 表明这个模块宽高比是2：1，如果这个模块的里面再嵌套一层，则
+width: 25%; padding-bottom: 25%; float: left;  
+
+swiper
+swiper-slide
+如果icons区域有多个icon的话，可以用swiper来进行轮播，需要把swiper-container的height:0; padding-bottom: 50;也就是说把swiper-container设成跟icons这个容器同一个高度
+
+typeScript
+
+
+
+RxJS
+这是因为函数和 Observables 都是惰性运算。如果你不调用函数，console.log('Hello') 就不会执行。Observables 也是如此，如果你不“调用”它(使用 subscribe)，console.log('Hello') 也不会执行。此外，“调用”或“订阅”是独立的操作：两个函数调用会触发两个单独的副作用，两个 Observable 订阅同样也是触发两个单独的副作用。EventEmitters 共享副作用并且无论是否存在订阅者都会尽早执行，Observables 与之相反，不会共享副作用并且是延迟执行。
+
+Function 是惰性的评估运算，调用时会同步地返回一个单一值。
+Generator 是惰性的评估运算，调用时会同步地返回零到(有可能的)无限多个值。
+Promise 是最终可能(或可能不)返回单个值的运算。
+Observable 是惰性的评估运算，它可以从它被调用的时刻起同步或异步地返回零到(有可能的)无限多个值。
+
+当使用一个观察者调用 observable.subscribe 时，Observable.create(function subscribe(observer) {...}) 中的 subscribe 函数只服务于给定的观察者。对 observable.subscribe 的每次调用都会触发针对给定观察者的独立设置。
+
+订阅 Observable 像是调用函数, 并提供接收数据的回调函数。
+
+subscribe 调用是启动 “Observable 执行”的一种简单方式， 并将值或事件传递给本次执行的观察者。
+
+在 Observable 执行中, 可能会发送零个到无穷多个 "Next" 通知。如果发送的是 "Error" 或 "Complete" 通知的话，那么之后不会再发送任何通知了。
+
+RxJS同样提供了catch操作符，err流入catch后，catch必须返回一个新的Observable。被catch后的错误流将不会进入observer的error函数，除非其返回的新observable出错。
+
+原因是保证代码的安全性(比如 Observable 规约)和操作符的可组合性。
+
+Subject 像是 Observable，但是可以多播给多个观察者。Subject 还像是 EventEmitters，维护着多个监听器的注册表。
+
+多播 Observable 在底层是通过使用 Subject 使得多个观察者可以看见同一个 Observable 执行。
+
+BehaviorSubjects 适合用来表示“随时间推移的值”。举例来说，生日的流是一个 Subject，但年龄的流应该是一个 BehaviorSubject 。
+
+操作符是函数，它基于当前的 Observable 创建一个新的 Observable。这是一个无副作用的操作：前面的 Observable 保持不变。
+
+实例运算符是使用 this 关键字来指代输入的 Observable 的函数。
+静态操作符是附加到 Observalbe 类上的纯函数，通常用来从头开始创建 Observalbe 。
+Rx.Observable.create和Rx.Observable.from
+var observable1 = Rx.Observable.interval(1000);
+var observable2 = Rx.Observable.interval(400);
+var merged = Rx.Observable.merge(observable1, observable2);
