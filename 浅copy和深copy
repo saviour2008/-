@@ -1,0 +1,12 @@
+1.浅copy只能copy最外面一层，包括Object.assign()和...，以及自己手写的浅copy不递归的那种
+2. （1）深copy是用JSON.stringfy结合JSON.parse来解决，但是这种会忽略掉方法和undefined。
+   （2）为了解决（1）的问题，可以手写递归
+    const deepClone = (obj) =>  {
+       const result = Array.isArray(obj) ? [] : {};
+       for (let key in obj) {
+          if(obj.hasOwnProperty(key)){
+              if(obj[key]&& typeof obj[key] === 'object')
+          }
+       }
+
+    }
