@@ -5,8 +5,13 @@
        const result = Array.isArray(obj) ? [] : {};
        for (let key in obj) {
           if(obj.hasOwnProperty(key)){
-              if(obj[key]&& typeof obj[key] === 'object')
+              if(obj[key]&& typeof obj[key] === 'object'){
+                  result[key] = deepClone(obj[key]);
+              } else {
+                  result[key] = obj[key];
+              }
           }
        }
-
+       
+       return result;
     }
